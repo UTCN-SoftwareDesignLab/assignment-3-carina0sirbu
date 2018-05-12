@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User</title>
+
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/appDoctor.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body onload="connect()" onunload="disconnect()" >
+
+<h1>Doctor section</h1>
+
+<p th:text="${welcomeMessage}"></p>
+
+<form action="#" th:action="@{/doctor}" th:object="${patientDto}" method="post">
+
+    <p> <input type="search" placeholder="Insert client's name" th:field="*{name}" /></p>
+
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+
+    <p><input type="submit" name = "search" value="Search consultations" /></p>
+
+</form>
+
+<form action="#" th:action="@{/doctor}" th:object="${consultationDto}" method="post">
+
+    <table style="width:100%">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>PATIENT</th>
+            <th>DOCTOR</th>
+            <th>DATE OF CONSULTATION</th>
+            <th>OBSERVATION</th>
+
+        </tr>
+        </thead>
+
+        <body>
+        <tr th:each = "consultHtml : ${consult}">
+            <td align="center" th:text = "${consultHtml.id}" ></td>
+            <td align="center" th:text = "${consultHtml.patient.name}" ></td>
+            <td align="center" th:text = "${consultHtml.doctor.name}" ></td>
+            <td align="center" th:text = "${consultHtml.consultationDate}" ></td>
+            <td align="center" th:text = "${consultHtml.observations}" ></td>
+
+        </tr>
+        </body>
+    </table>
+
+
+</form>
+
+<h3>Update observations</h3>
+
+<form action="#" th:action="@{/doctor}" th:object="${consultationDto}" method="post">
+
+    <p>Consultation's ID <input type="number"  th:field="*{id}" /></p>
+
+    <p><input type="text"  th:field="*{observations}" /></p>
+
+    <p><input type="submit" name = "changeObs" value="Save changes" /></p>
+
+</form>
+
+<p th:text="${messageHtml}"></p>
+
+<noscript><h2> Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+    enabled. Please enable
+    Javascript and reload this page! </h2></noscript>
+
+
+<div id="main-content" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table id="conversation" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Incoming appointments: </th>
+                </tr>
+                </thead>
+                <tbody id="messages">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

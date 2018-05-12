@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:td="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<h1>Consultations</h1>
+
+<table style="width:100%">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>PATIENT</th>
+        <th>DOCTOR</th>
+        <th>DATE OF CONSULTATION</th>
+        <th>OBSERVATION</th>
+
+    </tr>
+    </thead>
+
+    <body>
+    <tr th:each = "consultHtml : ${consult}">
+        <td align="center" th:text = "${consultHtml.id}" ></td>
+        <td align="center" th:text = "${consultHtml.patient.name}" ></td>
+        <td align="center" th:text = "${consultHtml.doctor.name}" ></td>
+        <td align="center" th:text = "${consultHtml.consultationDate}" ></td>
+        <td align="center" th:text = "${consultHtml.observations}" ></td>
+
+    </tr>
+    </body>
+</table>
+
+
+
+</body>
+</html>

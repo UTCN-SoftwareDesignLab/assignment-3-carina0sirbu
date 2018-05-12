@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<h1>Edit patient information</h1>
+<form action="#" th:action="@{/patientInfo}" th:object="${patientDto}" method="post">
+
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+
+    <p><input type="submit" name = "search" value="Search" /></p>
+
+    <p>Id: <input type="number" th:field="*{id}" /></p>
+
+    <p>Identity Card No: <input type="number" th:field="*{identityCardNumber}" /></p>
+
+    <!--<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>-->
+
+    <p>Pers Numerical Code: <input type="text" th:field="*{persNumCode}" /></p>
+
+    <p>Date of birth: <input type="date" th:field="*{dateOfBirth}" /></p>
+
+    <p>Address: <input type="text" th:field="*{address}" /></p>
+
+    <p><input type="submit" name = "update" value="Update patient's info" /></p>
+
+    <p><input type="submit" name = "create" value="Add patient" /></p>
+
+</form>
+
+
+<p th:text="${message}"></p>
+
+</body>
+</html>

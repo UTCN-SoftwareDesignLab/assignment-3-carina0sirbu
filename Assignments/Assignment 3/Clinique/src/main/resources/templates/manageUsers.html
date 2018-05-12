@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<h1>Administrator area</h1>
+<form action="#" th:action="@{/manageUsers}" th:object="${userDto}" method="post">
+
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+
+    <p><input type="submit" name = "search" value="Search" /></p>
+
+    <p>User's ID: <input type="number" th:field="*{id}" /></p>
+
+    <p>Username: <input type="text" th:field="*{username}" /></p>
+
+    <p>Password: <input type="text" th:field="*{password}" /></p>
+
+    <!--<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>-->
+
+    <p><input type="submit" name = "add" value="Add user" /></p>
+
+    <p><input type="submit" name = "update" value="Update user" /></p>
+
+    <p><input type="submit" name = "delete" value="Delete user" /></p>
+
+</form>
+
+
+<p th:text="${message}"></p>
+
+</body>
+</html>

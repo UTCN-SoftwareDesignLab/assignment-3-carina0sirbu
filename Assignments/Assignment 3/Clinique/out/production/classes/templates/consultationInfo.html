@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User</title>
+
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/appSecretary.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body onload="connect()" onunload="disconnect()" >
+
+<h1>Edit consultation information</h1>
+<form action="#" th:action="@{/consultationInfo}" th:object="${consultationDto}" method="post">
+
+    <p><input type="search" placeholder="Insert patient's name" th:field="*{patient.name}" /></p>
+
+    <p><input type="search" placeholder="Insert doctors's name" th:field="*{doctor.name}" /></p>
+
+
+    <p><input type="submit" name = "search" value="Search consultation" /></p>
+
+
+    <p>Consultation's ID: <input type="number" th:field="*{id}" /></p>
+
+    <!--<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>-->
+
+    <p>Date of consultation: <input type="date" th:field="*{consultationDate}" /></p>
+
+    <p>Observations: <input type="text" th:field="*{observations}" /></p>
+
+
+    <p><input type="submit" name = "update" value="Update consultation's info" /></p>
+
+    <p><input type="submit" name = "add" value="Add consultation" /></p>
+
+    <p><input type="submit" name = "delete" value="Delete consultation" /></p>
+
+
+</form>
+
+<p th:text="${messageHtml}"></p>
+
+</body>
+</html>
